@@ -2,6 +2,8 @@
 
 A comprehensive tool for analyzing gambling conversion funnels with interactive Streamlit interface and PDF report generation.
 
+https://funnelanalyzer.streamlit.app/
+
 ## Features
 
 ### 🎯 Core Analytics
