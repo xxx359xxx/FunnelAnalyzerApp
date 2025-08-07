@@ -1,286 +1,173 @@
-# FunnelAnalyzerApp 📊
+# Gambling Funnel Analysis Tool
 
-**Инструмент для анализа воронки конверсий в гемблинге**
+A comprehensive tool for analyzing gambling conversion funnels with interactive Streamlit interface and PDF report generation.
 
-Приложение с визуальным интерфейсом на Streamlit для анализа пользовательских воронок конверсий, детекции аномалий и генерации отчетов.
+## Features
 
-## 🚀 Возможности
+### 🎯 Core Analytics
+- **Funnel Analysis**: Registration → Deposit → First Bet → Second Deposit
+- **Conversion Metrics**: Step-by-step conversion rates and drop-off analysis
+- **Segment Analysis**: Traffic source, country, and device breakdowns
+- **Time-based Analysis**: Conversion timing and patterns
 
-- **Загрузка данных**: CSV файлы или генерация моковых данных
-- **Анализ воронки**: Регистрация → Депозит → Первая ставка → Второй депозит
-- **Метрики**: Конверсии между этапами, время между событиями
-- **Сегментация**: Анализ по источникам трафика, странам, устройствам
-- **Детекция аномалий**: Автоматическое обнаружение падений конверсий
-- **Визуализация**: Интерактивные графики Plotly
-- **Отчеты**: Генерация PDF отчетов
+### 📊 Interactive Dashboard
+- **Streamlit Web Interface**: User-friendly data upload and visualization
+- **Real-time Charts**: Interactive funnel visualizations and metrics
+- **Data Upload**: CSV file upload with automatic validation
+- **Export Options**: PDF report generation with professional formatting
 
-## 📋 Требования
+### 📄 PDF Reports
+- **Professional Reports**: Clean, formatted PDF output
+- **Multi-language Support**: English reports with proper font handling
+- **Comprehensive Analysis**: Funnel metrics, segments, and recommendations
+- **Custom Branding**: Configurable titles and author information
 
+## Installation
+
+### Prerequisites
 - Python 3.8+
-- Зависимости из `requirements.txt`
+- pip package manager
 
-## 🛠️ Установка
-
-### 1. Клонирование и установка зависимостей
-
+### Setup
+1. Clone this repository:
 ```bash
-# Перейти в директорию проекта
-cd FunnelAnalyzerApp
+git clone <repository-url>
+cd gambling-funnel-analysis
+```
 
-# Создать виртуальное окружение (рекомендуется)
-python -m venv venv
-
-# Активировать виртуальное окружение
-# Windows:
-venv\Scripts\activate
-# Linux/Mac:
-source venv/bin/activate
-
-# Установить зависимости
+2. Install dependencies:
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Запуск приложения
-
+3. Download fonts (optional, for better PDF rendering):
 ```bash
-# Запуск Streamlit приложения
+python download_fonts.py
+```
+
+## Usage
+
+### Streamlit Web Interface
+1. Start the application:
+```bash
 streamlit run app.py
 ```
 
-Приложение откроется в браузере по адресу: `http://localhost:8501`
+2. Open your browser and navigate to `http://localhost:8501`
 
-## 📁 Структура проекта
+3. Upload your CSV data file with the following columns:
+   - `registration_time`: User registration timestamp
+   - `deposit_time`: First deposit timestamp (optional)
+   - `first_bet_time`: First bet timestamp (optional)
+   - `second_deposit_time`: Second deposit timestamp (optional)
+   - `traffic_source`: Traffic source (email, direct, referral, etc.)
+   - `country`: User country code
+   - `device`: Device type (desktop, mobile, tablet)
 
-```
-FunnelAnalyzerApp/
-├── app.py                          # Основное Streamlit приложение
-├── utils.py                        # Класс FunnelAnalyzer и утилиты
-├── generate_mock_data.py           # Генерация тестовых данных
-├── requirements.txt                # Зависимости Python
-├── mock_data.csv                   # Тестовые данные (5000 записей)
-├── mock_data_with_segments.csv     # Тестовые данные с сегментами
-└── README.md                       # Документация
-```
-
-## 📊 Формат данных
-
-### Обязательные поля CSV файла:
-
-| Поле | Тип | Описание |
-|------|-----|----------|
-| `user_id` | int/string | Уникальный идентификатор пользователя |
-| `registration_time` | datetime | Время регистрации |
-| `deposit_time` | datetime | Время первого депозита (может быть пустым) |
-| `first_bet_time` | datetime | Время первой ставки (может быть пустым) |
-| `second_deposit_time` | datetime | Время второго депозита (может быть пустым) |
-| `traffic_source` | string | Источник трафика (google_ads, organic, etc.) |
-| `country` | string | Код страны (RU, UA, DE, etc.) |
-| `device` | string | Тип устройства (mobile, desktop, tablet) |
-
-### Пример CSV файла:
-
-```csv
-user_id,registration_time,deposit_time,first_bet_time,second_deposit_time,traffic_source,country,device
-1,2025-07-01 10:00:00,2025-07-01 12:00:00,2025-07-01 12:30:00,,google_ads,RU,mobile
-2,2025-07-01 11:00:00,,,,,organic,UA,desktop
-3,2025-07-01 12:00:00,2025-07-01 13:00:00,2025-07-01 13:15:00,2025-07-02 10:00:00,facebook_ads,DE,mobile
-```
-
-## 🎯 Использование
-
-### 1. Загрузка данных
-- **CSV файл**: Загрузите файл через боковую панель
-- **Моковые данные**: Выберите "Использовать моковые данные" и нажмите "Сгенерировать данные"
-
-### 2. Анализ воронки
-- Просмотрите основные метрики конверсий
-- Изучите время между этапами
-- Примените фильтры по сегментам
-- Анализируйте данные по источникам трафика, странам и устройствам
-
-### 3. Детекция аномалий
-- Настройте пороги для обнаружения аномалий
-- Отслеживайте тренды конверсий по дням
-- Получайте предупреждения о резких изменениях
-
-### 4. Генерация отчетов
-- Настройте содержание отчета
-- Сгенерируйте PDF отчет
-- Скачайте отчет с результатами анализа
-
-## 🔧 Сборка в .exe (Desktop версия)
-
-### Установка PyInstaller
-
-```bash
-pip install pyinstaller
-```
-
-### Создание .exe файла
-
-```bash
-# Простая сборка
-pyinstaller --onefile --windowed app.py
-
-# Расширенная сборка с иконкой и дополнительными файлами
-pyinstaller --onefile --windowed --add-data "utils.py;." --add-data "generate_mock_data.py;." --add-data "mock_data.csv;." --name "FunnelAnalyzerApp" app.py
-```
-
-### Альтернативный способ с spec файлом
-
-Создайте файл `FunnelAnalyzerApp.spec`:
-
+### Command Line Usage
 ```python
-# -*- mode: python ; coding: utf-8 -*-
+from utils import FunnelAnalyzer
+import pandas as pd
 
-block_cipher = None
+# Load your data
+df = pd.read_csv('your_data.csv')
 
-a = Analysis(
-    ['app.py'],
-    pathex=[],
-    binaries=[],
-    datas=[
-        ('utils.py', '.'),
-        ('generate_mock_data.py', '.'),
-        ('mock_data.csv', '.'),
-        ('requirements.txt', '.')
-    ],
-    hiddenimports=[
-        'streamlit',
-        'plotly',
-        'pandas',
-        'numpy',
-        'reportlab'
-    ],
-    hookspath=[],
-    hooksconfig={},
-    runtime_hooks=[],
-    excludes=[],
-    win_no_prefer_redirects=False,
-    win_private_assemblies=False,
-    cipher=block_cipher,
-    noarchive=False,
+# Create analyzer
+analyzer = FunnelAnalyzer(df)
+
+# Generate PDF report
+pdf_buffer = analyzer.generate_pdf_report(
+    df, 
+    title="Gambling Funnel Analysis",
+    author="Your Name"
 )
 
-pyi_splash = Splash(
-    'splash.png',  # Опционально: добавьте splash screen
-    binaries=a.binaries,
-    datas=a.datas,
-    text_pos=None,
-    text_size=12,
-    minify_script=True,
-    always_on_top=True,
-)
-
-pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
-
-exe = EXE(
-    pyz,
-    a.scripts,
-    a.binaries,
-    a.zipfiles,
-    a.datas,
-    splash,
-    splash.binaries,
-    [],
-    name='FunnelAnalyzerApp',
-    debug=False,
-    bootloader_ignore_signals=False,
-    strip=False,
-    upx=True,
-    upx_exclude=[],
-    runtime_tmpdir=None,
-    console=False,
-    disable_windowed_traceback=False,
-    argv_emulation=False,
-    target_arch=None,
-    codesign_identity=None,
-    entitlements_file=None,
-)
+# Save report
+with open('funnel_report.pdf', 'wb') as f:
+    f.write(pdf_buffer.getvalue())
 ```
 
-Затем выполните:
+## Data Format
 
-```bash
-pyinstaller FunnelAnalyzerApp.spec
+Your CSV file should contain the following columns:
+
+| Column | Type | Description | Required |
+|--------|------|-------------|----------|
+| `registration_time` | datetime | User registration timestamp | Yes |
+| `deposit_time` | datetime | First deposit timestamp | No |
+| `first_bet_time` | datetime | First bet timestamp | No |
+| `second_deposit_time` | datetime | Second deposit timestamp | No |
+| `traffic_source` | string | Traffic source identifier | Yes |
+| `country` | string | Country code (US, UK, etc.) | Yes |
+| `device` | string | Device type (desktop/mobile/tablet) | Yes |
+
+### Example Data
+```csv
+registration_time,deposit_time,first_bet_time,second_deposit_time,traffic_source,country,device
+2024-01-01 10:00:00,2024-01-01 10:30:00,2024-01-01 11:00:00,2024-01-03 10:00:00,email,US,desktop
+2024-01-01 11:00:00,2024-01-01 11:30:00,,,direct,UK,mobile
+2024-01-01 12:00:00,,,,referral,CA,tablet
 ```
 
-### Запуск .exe файла
+## Project Structure
 
-После сборки исполняемый файл будет находиться в папке `dist/`:
-
-```bash
-# Запуск
-.\dist\FunnelAnalyzerApp.exe
+```
+├── app.py                    # Streamlit web interface
+├── utils.py                  # Core analysis functions
+├── requirements.txt          # Python dependencies
+├── download_fonts.py         # Font download utility
+├── generate_mock_data.py     # Test data generator
+├── test_english_report.py    # PDF report testing
+├── test_fonts.py            # Font system testing
+├── run.py                   # Alternative runner
+├── fonts/                   # Font files directory
+│   ├── DejaVuSans.ttf
+│   └── DejaVuSans-Bold.ttf
+└── README.md               # This file
 ```
 
-**Примечание**: При запуске .exe файла Streamlit автоматически откроет браузер с приложением.
+## Key Metrics
 
-## 📈 Примеры использования
+### Funnel Stages
+1. **Registration**: Total users who registered
+2. **Deposit**: Users who made their first deposit
+3. **First Bet**: Users who placed their first bet
+4. **Second Deposit**: Users who made a second deposit
 
-### Анализ конверсий по источникам трафика
+### Conversion Rates
+- **Registration to Deposit**: % of registered users who deposited
+- **Deposit to First Bet**: % of depositors who placed a bet
+- **First Bet to Second Deposit**: % of bettors who made a second deposit
 
-1. Загрузите данные
-2. Перейдите на вкладку "Анализ воронки"
-3. Выберите интересующие источники трафика
-4. Изучите метрики конверсий и графики
+### Segment Analysis
+- **Traffic Source Performance**: Conversion by acquisition channel
+- **Geographic Analysis**: Performance by country
+- **Device Analysis**: Mobile vs Desktop vs Tablet performance
 
-### Детекция аномалий
+## Dependencies
 
-1. Перейдите на вкладку "Детекция аномалий"
-2. Настройте порог аномалии (например, 50%)
-3. Просмотрите обнаруженные аномалии
-4. Изучите тренды конверсий
+- `streamlit`: Web interface framework
+- `pandas`: Data manipulation and analysis
+- `plotly`: Interactive visualizations
+- `reportlab`: PDF generation
+- `requests`: HTTP requests for font downloads
 
-### Генерация отчета
+## Contributing
 
-1. Перейдите на вкладку "Отчет"
-2. Настройте параметры отчета
-3. Выберите разделы для включения
-4. Нажмите "Сгенерировать PDF отчет"
-5. Скачайте готовый отчет
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
-## 🐛 Устранение неполадок
+## License
 
-### Проблемы с установкой зависимостей
+This project is open source and available under the MIT License.
 
-```bash
-# Обновите pip
-python -m pip install --upgrade pip
+## Support
 
-# Установите зависимости по одной
-pip install streamlit
-pip install pandas
-pip install plotly
-pip install reportlab
-```
-
-### Проблемы с кодировкой CSV
-
-Если возникают проблемы с кодировкой при загрузке CSV:
-
-1. Сохраните CSV файл в кодировке UTF-8
-2. Используйте точку с запятой (;) как разделитель
-3. Убедитесь, что даты в формате YYYY-MM-DD HH:MM:SS
-
-### Проблемы с .exe файлом
-
-1. Убедитесь, что все зависимости установлены
-2. Проверьте, что все файлы включены в сборку
-3. Запустите из командной строки для просмотра ошибок
-
-## 📞 Поддержка
-
-Для получения помощи:
-
-1. Проверьте раздел "Устранение неполадок"
-2. Убедитесь, что используете правильный формат данных
-3. Проверьте логи в терминале при запуске
-
-## 📄 Лицензия
-
-Проект создан для образовательных и коммерческих целей.
+For questions or issues, please create an issue in the GitHub repository.
 
 ---
 
-**FunnelAnalyzerApp** - Мощный инструмент для анализа воронки конверсий в гемблинге 🎰📊
+**Note**: This tool is designed for gambling industry analysis and should be used in compliance with local regulations and responsible gambling practices.
